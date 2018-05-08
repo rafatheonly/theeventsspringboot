@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar  target/eventospringboot-0.0.1-SNAPSHOT.jar -Dspring.profiles.active=prod
+web: java -Dserver.port=$PORT -jar  target/theeventsspringboot-0.0.1-SNAPSHOT.jar -Dspring.profiles.active=prod
