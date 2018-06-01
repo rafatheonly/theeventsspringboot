@@ -1,35 +1,23 @@
 package com.theeventsspringboot.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Evento {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty	
-	private String titulo;
-
-	@NotEmpty
-	private String data;
-
-	@NotEmpty
-	private String descricao;
-	
-	@NotEmpty
+	private String nome;
+	private String cpf;
+	private String email;
+	private String senha;
 	private String foto;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Tipoevento tipoevento;
+	private boolean ativo;
 
 	public Long getId() {
 		return id;
@@ -39,28 +27,36 @@ public class Evento {
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getData() {
-		return data;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public String getFoto() {
@@ -69,6 +65,14 @@ public class Evento {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
@@ -87,12 +91,12 @@ public class Evento {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Evento other = (Evento) obj;
+		Usuario other = (Usuario) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
+	}
 }

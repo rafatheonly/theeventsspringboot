@@ -1,35 +1,24 @@
 package com.theeventsspringboot.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-public class Evento {
+public class Tipoevento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty	
-	private String titulo;
-
-	@NotEmpty
-	private String data;
-
-	@NotEmpty
 	private String descricao;
-	
-	@NotEmpty
-	private String foto;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Tipoevento tipoevento;
+
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private Evento evento;
 
 	public Long getId() {
 		return id;
@@ -37,22 +26,6 @@ public class Evento {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
 	}
 
 	public String getDescricao() {
@@ -63,12 +36,12 @@ public class Evento {
 		this.descricao = descricao;
 	}
 
-	public String getFoto() {
-		return foto;
+	public Evento getEvento() {
+		return evento;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setEvento(Evento evento) {
+		this.evento = evento;
 	}
 
 	@Override
@@ -87,12 +60,13 @@ public class Evento {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Evento other = (Evento) obj;
+		Tipoevento other = (Tipoevento) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
+	}
+
 }
