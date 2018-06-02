@@ -9,3 +9,7 @@ VALUES (NULL, 'Churrasco'), (NULL, 'Aniversário'), (NULL, 'Casamento'), (NULL, 
 INSERT INTO evento (id, titulo, data, descricao, local, foto, ativo, tipoevento_id) 
 VALUES (NULL, 'Encontro da Gatas', '2018-09-10', 'Festa com muita bebida e mulheres.', 'Fenadoce', '-', '0', 2), 
        (NULL, 'Futebol Solidario', '2018-10-11', 'Todos juntos para assistir a nossa Seleção.', 'R. Manuel Caetano da Silva, n° 156', '-', '0', 1);
+
+INSERT INTO usuarioevento (id, usuario_id, evento_id, dataCriacao) VALUES (NULL, 2, 1, '2018-06-01');
+
+INSERT INTO comentario (id, usuario_id, evento_id, dataComentario, comentario, ativo) VALUES (NULL, 1, 1, '2018-06-02', 'Otima festa!', '0');
