@@ -1,10 +1,13 @@
 package com.theeventsspringboot.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -21,6 +24,9 @@ public class Evento {
 
 	@NotEmpty
 	private String data;
+	
+	@ManyToMany (targetEntity = Usuario.class)
+	private List<Usuario> usuarios;
 
 	@NotEmpty
 	private String descricao;
