@@ -5,9 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tipoevento")
 public class Tipoevento {
 
 	@Id
@@ -16,8 +17,7 @@ public class Tipoevento {
 
 	private String descricao;
 
-	@OneToOne
-	@PrimaryKeyJoinColumn
+	@OneToOne(mappedBy = "tipoevento")
 	private Evento evento;
 
 	public Long getId() {
