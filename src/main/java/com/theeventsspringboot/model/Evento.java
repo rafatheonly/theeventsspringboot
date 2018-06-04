@@ -1,11 +1,15 @@
 package com.theeventsspringboot.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,17 +26,13 @@ public class Evento {
 	@NotEmpty
 	private String data;
 
-	/**
-	 * @ManyToMany (targetEntity = Usuario.class) private List<Usuario> usuarios;
-	 **/
-
 	@NotEmpty
 	private String descricao;
 
 	@NotEmpty
 	private String foto;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "tipoevento_id")
 	private Tipoevento tipoevento;
 
@@ -74,7 +74,7 @@ public class Evento {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
-	}
+	}	
 
 	public Tipoevento getTipoevento() {
 		return tipoevento;

@@ -1,11 +1,15 @@
 package com.theeventsspringboot.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tipoevento")
@@ -16,9 +20,9 @@ public class Tipoevento {
 	private Long id;
 
 	private String descricao;
-
-	@OneToOne(mappedBy = "tipoevento")
-	private Evento evento;
+	
+	@OneToMany(mappedBy = "tipoevento")
+	private List<Evento> evento;
 
 	public Long getId() {
 		return id;
@@ -36,11 +40,12 @@ public class Tipoevento {
 		this.descricao = descricao;
 	}
 
-	public Evento getEvento() {
+	@JsonIgnore
+	public List<Evento> getEvento() {
 		return evento;
 	}
 
-	public void setEvento(Evento evento) {
+	public void setEvento(List<Evento> evento) {
 		this.evento = evento;
 	}
 
