@@ -4,7 +4,7 @@ INSERT INTO usuario (id, nome, cpf, email, senha, foto, ativo) VALUES (NULL, "Mi
 INSERT INTO tipoevento (id, descricao) VALUES (NULL, "Churrasco");
 INSERT INTO tipoevento (id, descricao) VALUES (NULL, "Aniversário");
 
-INSERT INTO evento (id, titulo, data, descricao, local, foto, ativo, tipoevento_id) VALUES (NULL, "Encontro da Gatas", "2018-09-10", "Festa com muita bebida e mulheres.", "Fenadoce", "-", 1, 2), 
+INSERT INTO evento (id, titulo, data, descricao, local, foto, ativo, tipoevento_id) VALUES (NULL, "Encontro da Gatas", "2018-09-10", "Festa com muita bebida e mulheres.", "Fenadoce", "-", 1, 2);
 INSERT INTO evento (id, titulo, data, descricao, local, foto, ativo, tipoevento_id) VALUES (NULL, "Futebol Solidario", "2018-10-11", "Todos juntos para assistir a nossa Seleção.", "R. Manuel Caetano da Silva, n° 156", "-", 1, 1);
 
 INSERT INTO usuarioevento (id, usuario_id, evento_id, dataCriacao) VALUES (NULL, 2, 1, "2018-06-01");
