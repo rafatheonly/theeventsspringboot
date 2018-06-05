@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS usuario (
   email VARCHAR(50) NOT NULL,
   senha VARCHAR(32) NOT NULL,
   foto VARCHAR(60) NULL,
-  ativo BIT(1) NOT NULL,
+  ativo BIT NOT NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS evento (
   descricao VARCHAR(255) NOT NULL,
   local VARCHAR(45) NOT NULL,
   foto VARCHAR(60) NULL,
-  ativo BIT(1) NOT NULL,
+  ativo BIT NOT NULL,
   tipoevento_id BIGINT NOT NULL,
   PRIMARY KEY (id),  
     FOREIGN KEY (tipoevento_id) REFERENCES tipoevento (id)
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS comentario (
   evento_id BIGINT NOT NULL,
   dataComentario DATE NOT NULL,
   comentario VARCHAR(255) NOT NULL,
-  ativo BIT(1) NOT NULL,
+  ativo BIT NOT NULL,
   PRIMARY KEY (id), 
     FOREIGN KEY (usuario_id) REFERENCES usuario (id),
     FOREIGN KEY (evento_id) REFERENCES evento (id)
