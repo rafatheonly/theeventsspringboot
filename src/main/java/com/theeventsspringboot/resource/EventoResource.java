@@ -39,8 +39,8 @@ public class EventoResource {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Evento> buscar(@PathVariable Long id) {
-		Evento evento = eventoRepository.findById(id).get();
+	public ResponseEntity<Evento> findById(@PathVariable Long id) {
+		Evento evento = eventoRepository.getOne(id);
 
 		if (evento == null) {
 			return ResponseEntity.notFound().build();

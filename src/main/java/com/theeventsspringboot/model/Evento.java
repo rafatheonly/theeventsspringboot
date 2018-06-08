@@ -15,21 +15,29 @@ public class Evento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+
+	@ManyToOne
+	@JoinColumn(name = "tipoevento_id")
+	private Tipoevento tipoevento;
+
 	@NotEmpty
 	private String titulo;
 
 	@NotEmpty
-	private String data;
+	private String data_criacao;
 
 	@NotEmpty
 	private String descricao;
 
 	@NotEmpty
+	private String local;
+
 	private String foto;
 
-	@ManyToOne
-	@JoinColumn(name = "tipoevento_id")
-	private Tipoevento tipoevento;
+	private boolean ativo;
 
 	public Long getId() {
 		return id;
@@ -37,6 +45,22 @@ public class Evento {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Tipoevento getTipoevento() {
+		return tipoevento;
+	}
+
+	public void setTipoevento(Tipoevento tipoevento) {
+		this.tipoevento = tipoevento;
 	}
 
 	public String getTitulo() {
@@ -47,12 +71,12 @@ public class Evento {
 		this.titulo = titulo;
 	}
 
-	public String getData() {
-		return data;
+	public String getData_criacao() {
+		return data_criacao;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setData_criacao(String data_criacao) {
+		this.data_criacao = data_criacao;
 	}
 
 	public String getDescricao() {
@@ -63,20 +87,28 @@ public class Evento {
 		this.descricao = descricao;
 	}
 
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
+	}
+
 	public String getFoto() {
 		return foto;
 	}
 
 	public void setFoto(String foto) {
 		this.foto = foto;
-	}	
-
-	public Tipoevento getTipoevento() {
-		return tipoevento;
 	}
 
-	public void setTipoevento(Tipoevento tipoevento) {
-		this.tipoevento = tipoevento;
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override

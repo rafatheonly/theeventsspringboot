@@ -1,22 +1,35 @@
 package com.theeventsspringboot.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String nome;
-	private String cpf;
+	private String rg;
 	private String email;
 	private String senha;
 	private String foto;
+	private String tipo;
 	private boolean ativo;
+
+	@OneToMany(mappedBy = "usuario")
+	private List<Evento> evento;
+
+	@OneToMany(mappedBy = "usuario")
+	private List<Tipoevento> tipoevento;
 
 	public Long getId() {
 		return id;
@@ -34,12 +47,12 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getRg() {
+		return rg;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setRg(String rg) {
+		this.rg = rg;
 	}
 
 	public String getEmail() {
@@ -66,12 +79,38 @@ public class Usuario {
 		this.foto = foto;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	public boolean isAtivo() {
 		return ativo;
 	}
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	@JsonIgnore
+	public List<Evento> getEvento() {
+		return evento;
+	}
+
+	public void setEvento(List<Evento> evento) {
+		this.evento = evento;
+	}
+
+	@JsonIgnore
+	public List<Tipoevento> getTipoevento() {
+		return tipoevento;
+	}
+
+	public void setTipoevento(List<Tipoevento> tipoevento) {
+		this.tipoevento = tipoevento;
 	}
 
 	@Override
