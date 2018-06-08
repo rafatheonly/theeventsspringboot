@@ -15,66 +15,63 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.theeventsspringboot.model.Usuario;
-import com.theeventsspringboot.repository.UsuarioRepository;
+import com.theeventsspringboot.model.Tipoevento;
+import com.theeventsspringboot.repository.TipoeventoRepository;
 
-@RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/tipoevento")
 @CrossOrigin("${origem-permitida}")
-public class UsuarioResource {
+public class TipoeventoResource {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
-
+	TipoeventoRepository tipoeventoRepository;
+	
 	@PostMapping
-	public Usuario adicionar(@Valid @RequestBody Usuario usuario) {
-		return usuarioRepository.save(usuario);
+	public Tipoevento adicionar(@Valid @RequestBody Tipoevento tipoevento) {
+		return tipoeventoRepository.save(tipoevento);
 	}
 
 	@GetMapping()
-	public List<Usuario> listar() {
-		return usuarioRepository.findAll();
+	public List<Tipoevento> listar() {
+		return tipoeventoRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> findById(@PathVariable Long id) {
-		Usuario usuario = usuarioRepository.getOne(id);
+	public ResponseEntity<Tipoevento> findById(@PathVariable Long id) {
+		Tipoevento tipoevento = tipoeventoRepository.getOne(id);
 
-		if (usuario == null) {
+		if (tipoevento == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		return ResponseEntity.ok(usuario);
+		return ResponseEntity.ok(tipoevento);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @Valid @RequestBody Usuario usuario) {
-		Usuario existente = usuarioRepository.findById(id).get();
+	public ResponseEntity<Tipoevento> atualizar(@PathVariable Long id, @Valid @RequestBody Tipoevento tipoevento) {
+		Tipoevento existente = tipoeventoRepository.findById(id).get();
 
 		if (existente == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		BeanUtils.copyProperties(usuario, existente, "id");
+		BeanUtils.copyProperties(tipoevento, existente, "id");
 
-		existente = usuarioRepository.save(existente);
+		existente = tipoeventoRepository.save(existente);
 
 		return ResponseEntity.ok(existente);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> remover(@PathVariable Long id) {
-		Usuario usuario = usuarioRepository.findById(id).get();
+		Tipoevento tipoevento = tipoeventoRepository.findById(id).get();
 
-		if (usuario == null) {
+		if (tipoevento == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		usuarioRepository.delete(usuario);
+		tipoeventoRepository.delete(tipoevento);
 
 		return ResponseEntity.noContent().build();
 	}
-
 }
