@@ -14,7 +14,7 @@ CREATE TABLE tipoevento (
   id BIGINT(1) NOT NULL AUTO_INCREMENT,
   descricao_tipo_evento VARCHAR(45) NOT NULL,
   usuario_id BIGINT(1) NOT NULL,
-  PRIMARY KEY (id), 
+  PRIMARY KEY (id, usuario_id), 
     FOREIGN KEY (usuario_id) REFERENCES usuario (id))
 ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
@@ -28,7 +28,7 @@ CREATE TABLE evento (
   local VARCHAR(45) NOT NULL,
   foto VARCHAR(60) NULL,
   ativo TINYINT(1) NOT NULL,
-  PRIMARY KEY (id), 
+  PRIMARY KEY (id, usuario_id, tipoevento_id), 
     FOREIGN KEY (usuario_id) REFERENCES usuario (id), 
     FOREIGN KEY (tipoevento_id) REFERENCES tipoevento (id))
 ENGINE = InnoDB DEFAULT CHARSET=utf8;
@@ -39,7 +39,7 @@ CREATE TABLE convidado (
   rg VARCHAR(10) NULL,
   evento_id BIGINT(1) NOT NULL,
   usuario_id BIGINT(1) NOT NULL,
-  PRIMARY KEY (id),  
+  PRIMARY KEY (id, evento_id, usuario_id),  
     FOREIGN KEY (evento_id) REFERENCES evento (id), 
     FOREIGN KEY (usuario_id) REFERENCES usuario (id))
 ENGINE = InnoDB DEFAULT CHARSET=utf8;
@@ -51,7 +51,7 @@ CREATE TABLE comentario (
   data_comentario VARCHAR(45) NOT NULL,
   comentario VARCHAR(200) NOT NULL,
   ativo TINYINT(1) NOT NULL,
-  PRIMARY KEY (id),  
+  PRIMARY KEY (id, usuario_id, evento_id),  
     FOREIGN KEY (usuario_id) REFERENCES usuario (id),  
     FOREIGN KEY (evento_id) REFERENCES evento (id))
 ENGINE = InnoDB DEFAULT CHARSET=utf8;
