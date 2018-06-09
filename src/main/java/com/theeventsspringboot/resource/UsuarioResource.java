@@ -39,14 +39,18 @@ public class UsuarioResource {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
 	private UsuarioService usuarioService;
 
 	@PostMapping
 	public Usuario adicionar(@Valid @RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
-
-	@GetMapping("/exportusuario")
+	
+	
+	@GetMapping()
+	@RequestMapping("/exportusuario")
 	public ResponseEntity<byte[]> exportUsuario() throws JRException {
 		 List<Usuario> usuarios = usuarioRepository.findAll();    //usuarioRepository.findAll();
 		 Map<String, Object> parametros = new HashMap<>();
@@ -63,7 +67,7 @@ public class UsuarioResource {
 	
 	@GetMapping()
 	public List<Usuario> listar(){
-		return usuarioService.listaUsuarios();
+		return usuarioRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
