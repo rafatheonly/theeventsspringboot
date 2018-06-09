@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.theeventsspringboot.model.Usuario;
 import com.theeventsspringboot.repository.UsuarioRepository;
+import com.theeventsspringboot.service.UsuarioService;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -38,14 +39,15 @@ public class UsuarioResource {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	private UsuarioService usuarioService;
 
 	@PostMapping
 	public Usuario adicionar(@Valid @RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
 
-	@GetMapping()
-	public ResponseEntity<byte[]> listar() throws JRException {
+	@GetMapping("/exportusuario")
+	public ResponseEntity<byte[]> exportUsuario() throws JRException {
 		 List<Usuario> usuarios = usuarioRepository.findAll();    //usuarioRepository.findAll();
 		 Map<String, Object> parametros = new HashMap<>();
 		 InputStream x = getClass().getResourceAsStream("/reports/usuarioExport.jrxml");
@@ -57,6 +59,11 @@ public class UsuarioResource {
          .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE)
          .body(JasperExportManager.exportReportToPdf(print));
 
+	}
+	
+	@GetMapping()
+	public List<Usuario> listar(){
+		return usuarioService.listaUsuarios();
 	}
 
 	@GetMapping("/{id}")
