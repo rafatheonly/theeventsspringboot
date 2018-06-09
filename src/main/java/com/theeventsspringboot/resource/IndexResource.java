@@ -1,4 +1,4 @@
-package com.theeventsspringboot.resource;
+/*package com.theeventsspringboot.resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,4 +17,4 @@ public class IndexResource {
 	public String visualizaTexto() {
 		return "Hello Word";
 	}
-}
+}*/

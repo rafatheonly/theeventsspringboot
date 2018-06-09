@@ -1,4 +1,4 @@
-/**package com.theeventsspringboot.security;
+/*package com.theeventsspringboot.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -30,4 +30,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/style/**");
 	}
-}**/
+}*/
